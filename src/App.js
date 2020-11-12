@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import react from "react";
+import Counter from "./Components/Counter";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class IdeationApp extends react.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [
+        {
+          name: "ModernOffice",
+          votes: 0,
+        },
+        {
+          name: "Offsite",
+          votes: 0,
+        },
+      ],
+    };
+  }
+
+  handleUpVote = (index) => {
+    const { data } = this.state;
+    data[index].votes = data[index].votes + 1;
+    this.setState({
+      data,
+    });
+  };
+
+  handleDownVote = (index) => {
+    const { data } = this.state;
+    data[index].votes = data[index].votes - 1;
+    this.setState({
+      data,
+    });
+  };
+
+  render() {
+    const { data } = this.state;
+    return (
+      <div>
+        <ul>
+          {data.map((item, index) => (
+            <Counter
+              key={index}
+              item={item}
+              index={index}
+              handleUpVote={this.handleUpVote}
+              handleDownVote={this.handleDownVote}
+            ></Counter>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default IdeationApp;
