@@ -6,7 +6,7 @@ class IdeationApp extends react.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
+      products: [
         {
           name: "ModernOffice",
           votes: 0,
@@ -20,30 +20,30 @@ class IdeationApp extends react.Component {
   }
 
   handleUpVote = (index) => {
-    const { data } = this.state;
-    data[index].votes = data[index].votes + 1;
+    const { products } = this.state;
+    products[index].votes = products[index].votes + 1;
     this.setState({
-      data,
+      products,
     });
   };
 
   handleDownVote = (index) => {
-    const { data } = this.state;
-    data[index].votes = data[index].votes - 1;
+    const { products } = this.state;
+    products[index].votes = products[index].votes - 1;
     this.setState({
-      data,
+      products,
     });
   };
 
   render() {
-    const { data } = this.state;
+    const { products } = this.state;
     return (
       <div>
         <ul>
-          {data.map((item, index) => (
+          {products.map((idea, index) => (
             <Counter
               key={index}
-              item={item}
+              idea={idea}
               index={index}
               handleUpVote={this.handleUpVote}
               handleDownVote={this.handleDownVote}
